@@ -14,24 +14,50 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the video covers the entire area */
-  z-index: -1; /* Send video behind other content */
+  object-fit: cover;
+  z-index: -1;
 }
 
-.content {
+/* .content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end; /* Align items to the right */
-  width: 30%; /* Adjust as needed */
-  padding-right: 50px; /* Optional: add padding if needed */
-  color: white; /* Set text color to contrast with the background */
-}
+  align-items: flex-end;
+  width: 30%;
+  padding-right: 50px;
+  color: white;
+} */
 
-.tagline {
-  margin-bottom: 60px; /* Space between tagline and sign-in form */
-  font-size: 1rem; /* Adjust font size as needed */
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 30%; */
+  padding-right: 50px;
+  color: white;
+}
+.appName {
   text-transform: uppercase;
-  text-align: center;
+  color: #00abb3;
+  display: block;
+  position: absolute;
+  left: 50px;
+  top: 250px;
+  font-size: 1.9rem;
+  font-weight: bold;
+}
+.tagline,
+.tagline2 {
+  margin-bottom: 40px;
+  font-size: 1rem;
+  text-transform: uppercase;
   padding-right: 15px;
+  position: absolute;
+  left: 50px;
+  top: 320px;
+  font-size: 1.2rem;
+}
+.tagline2 {
+  top: 350px;
 }

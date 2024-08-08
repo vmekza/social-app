@@ -15,9 +15,11 @@ const LoginLayout = ({ children }) => {
         className={css.backgroundVideo}
       />
       <div className={css.content}>
-        <p className={css.tagline}>
-          For the Selfie Kings and Queens of the Gym World
-        </p>
+        <div>
+          <p className={css.appName}>Brag Zone</p>
+          <p className={css.tagline}>Where Every Flex Tells a Story</p>
+          <p className={css.tagline2}>Share Yours</p>
+        </div>
         <div className={css.signInContainer}>{children}</div>
       </div>
     </div>
