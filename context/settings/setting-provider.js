@@ -4,7 +4,7 @@ import { SettingContext } from './setting-context';
 
 export const SettingContextProvider = ({ children }) => {
   const [settings, setSettings] = useState({
-    theme: 'dark',
+    theme: 'light',
   });
 
   return (

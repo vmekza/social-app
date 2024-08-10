@@ -12,7 +12,11 @@ const HomeLayout = ({ children }) => {
       <ThemeProvider>
         <Block
           type='mainBgColor'
-          style={{ position: 'relative', width: '100vw', height: '100vh' }}
+          style={{
+            position: 'relative',
+            width: '100vw',
+            height: '100vh',
+          }}
         >
           <div className={css.container}>
             {/** Header */}
