@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 html,
@@ -9,6 +10,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   color-scheme: dark;
+  font-family: 'Lato', sans-serif;
 }
 .cl-formButtonPrimary {
   font-size: 14px;

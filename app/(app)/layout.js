@@ -5,6 +5,7 @@ import ThemeProvider from '@/lib/ThemeProvider';
 import Block from '@/components/Block/Block';
 import css from '@/styles/homeLayout.module.css';
 import Header from '@/components/Header';
+import Navigation from '@/components/Navigation';
 
 const HomeLayout = ({ children }) => {
   return (
@@ -18,9 +19,12 @@ const HomeLayout = ({ children }) => {
             height: '100vh',
           }}
         >
-          <div className={css.container}>
-            {/** Header */}
+          <div className={css.wrapper}>
             <Header />
+
+            <div className='main_container'>
+              <Navigation />
+            </div>
           </div>
         </Block>
       </ThemeProvider>

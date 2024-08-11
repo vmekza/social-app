@@ -20,7 +20,7 @@ const ModeSwitch = () => {
             theme: prev.theme === 'dark' ? 'light' : 'dark',
           }));
         }}
-        icon={<Icon icon='ic:baseline-dark-mode' width={'35px'} />}
+        icon={<Icon icon='ic:outline-dark-mode' width={'35px'} />}
       />
     </div>
   );
