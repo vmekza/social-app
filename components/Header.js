@@ -5,6 +5,7 @@ import Block from '@/components/Block/Block';
 import Image from 'next/image';
 import { Flex } from 'antd';
 import ModeSwitch from '@/components/ModeSwitch';
+import { UserButton } from '@clerk/nextjs';
 
 const Header = () => {
   return (
@@ -24,7 +25,8 @@ const Header = () => {
             alt='logo'
           />
           <Flex gap={25} align='center'>
-            <ModeSwitch></ModeSwitch>
+            <ModeSwitch />
+            <UserButton afterSignOutUrl='/sign-in' />
           </Flex>
         </div>
       </Block>

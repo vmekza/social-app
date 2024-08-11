@@ -8,14 +8,19 @@ const ModeSwitch = () => {
   return (
     <div>
       <Button
-        style={{ padding: '0px', border: 'none', background: 'transparent' }}
+        style={{
+          marginTop: '5px',
+          padding: '0px',
+          border: 'none',
+          background: 'transparent',
+        }}
         onClick={() => {
           setSettings((prev) => ({
             ...prev,
             theme: prev.theme === 'dark' ? 'light' : 'dark',
           }));
         }}
-        icon={<Icon icon='ic:baseline-dark-mode' width={'33px'} />}
+        icon={<Icon icon='ic:baseline-dark-mode' width={'35px'} />}
       />
     </div>
   );
