@@ -6,19 +6,28 @@ import { navRoutes } from '@/lib/navRoutes';
 import Link from 'next/link';
 import { Typography } from 'antd';
 import { Icon } from '@iconify/react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useClerk } from '@clerk/nextjs';
+import cx from 'classnames';
 
 const Navigation = () => {
   const router = useRouter();
   const { signOut } = useClerk();
+  const pathname = usePathname();
+  const isActiveTab = (route) => {
+    if (router.route === pathname) return css.active;
+  };
 
   return (
     <div className={css.wrapper}>
       <Block className={css.nav_container}>
         {' '}
         {navRoutes().map((route, index) => (
-          <Link className={css.nav_link} key={index} href={route.route}>
+          <Link
+            className={cx(css.nav_link, isActiveTab(route))}
+            key={index}
+            href={route.route}
+          >
             <Typography>
               <Icon icon={route.icon} width={'25px'} />
             </Typography>

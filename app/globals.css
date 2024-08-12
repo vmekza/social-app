@@ -12,6 +12,9 @@ body {
   color-scheme: dark;
   font-family: 'Lato', sans-serif;
 }
+:root {
+  --color-primary: #72c6c3;
+}
 .cl-formButtonPrimary {
   font-size: 14px;
   text-transform: none;

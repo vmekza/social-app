@@ -13,11 +13,25 @@
   border-radius: 15px;
   margin-left: 1.9rem;
   margin-bottom: 5px;
-  padding: 40px 25px 0px 25px;
+  padding-top: 35px;
+  /* padding: 40px 25px 0px 25px; */
 }
 .nav_link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
   margin-bottom: 15px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  background-color: transparent; /* Ensure initial background color is transparent or as needed */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  box-sizing: border-box; /* Ensure padding does not affect total width/height */
+}
+.nav_link:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.11);
+}
+.nav_link.active {
+  background-color: var(--color-primary);
+  transform: scale(1.11);
 }
