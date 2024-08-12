@@ -2,9 +2,9 @@ import './globals.css';
 import StyledComponentsRegistry from '@/lib/AntRegistry';
 import { ClerkProvider } from '@clerk/nextjs';
 import '@/styles/fonts.css';
-import { Merriweather } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 
-const publicSans = Merriweather({
+const publicSans = Roboto({
   subsets: ['latin'],
   weight: ['400', '700'],
 });

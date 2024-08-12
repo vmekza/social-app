@@ -18,6 +18,6 @@
 .nav_link {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
   margin-bottom: 15px;
 }
