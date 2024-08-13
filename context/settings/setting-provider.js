@@ -5,6 +5,7 @@ import { SettingContext } from './setting-context';
 export const SettingContextProvider = ({ children }) => {
   const [settings, setSettings] = useState({
     theme: 'light',
+    isNavigationShow: false,
   });
 
   return (

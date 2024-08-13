@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Flex } from 'antd';
 import ModeSwitch from '@/components/ModeSwitch';
 import { UserButton } from '@clerk/nextjs';
+import NavButton from '@/components/NavButton';
 
 const Header = () => {
   return (
@@ -17,8 +18,11 @@ const Header = () => {
         }}
       >
         <div className={css.header_container}>
+          <div className={css.nav_button}>
+            <NavButton />
+          </div>
           <Image
-            className='css.logo'
+            className={css.logo}
             src={'/images/logo.png'}
             width={70}
             height={40}
