@@ -1,0 +1,17 @@
+.wrapper {
+  min-height: calc(100vh - 72px);
+  top: 72px;
+  position: fixed;
+  min-width: 100vw;
+  flex-direction: column;
+  overflow: scroll;
+}
+.main_container {
+  display: flex;
+  gap: 1rem;
+  flex-grow: 1;
+  margin-top: 50px;
+}
+.page_content {
+  flex: 1;
+}

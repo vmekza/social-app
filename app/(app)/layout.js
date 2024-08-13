@@ -21,9 +21,10 @@ const HomeLayout = ({ children }) => {
         >
           <div className={css.wrapper}>
             <Header />
-
-            <div className='main_container'>
+            <div className={css.main_container}>
               <Navigation />
+
+              <div className={css.page_content}>{children}</div>
             </div>
           </div>
         </Block>
