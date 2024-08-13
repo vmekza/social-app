@@ -40,3 +40,6 @@ body {
 .cl-internal-15amzqo:hover {
   color: #358e8e;
 }
+.ant-drawer-content-wrapper {
+  width: 272px !important;
+}

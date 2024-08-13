@@ -34,3 +34,12 @@
   background-color: var(--color-primary);
   transform: scale(1.11);
 }
+
+/* Small screens */
+
+.burger_container {
+  height: 100%;
+}
+.burger_container aside {
+  height: 100%;
+}
