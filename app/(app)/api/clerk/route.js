@@ -53,7 +53,7 @@ export async function POST(req) {
         id,
         first_name,
         last_name,
-        email_addresses,
+        email_address,
         image_url,
         username,
       });
