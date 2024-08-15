@@ -9,7 +9,7 @@
   z-index: 999;
   box-sizing: border-box;
   box-shadow: var(--shadow);
-  border-radius: 15px;
+  border-radius: 0.5rem;
 }
 .header_container {
   display: flex;

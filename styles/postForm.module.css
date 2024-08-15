@@ -1,5 +1,17 @@
-.postForm_container {
-  padding: 1rem;
+.wrapper {
+  border-radius: 0.5rem;
+}
+
+.post_form_container {
+  padding: 1.5rem;
   box-shadow: var(--shadow);
-  border-radius: 8px;
+  border-radius: 0.5rem;
+  position: relatoive;
+}
+.post_form_btn {
+  padding: 0.5rem 0rem 0rem 2.5rem;
+}
+
+.btn_share:hover {
+  background-color: white;
 }
