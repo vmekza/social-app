@@ -8,7 +8,7 @@
   height: 75px;
   z-index: 999;
   box-sizing: border-box;
-  box-shadow: 5px 4px 5px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
   border-radius: 15px;
 }
 .header_container {

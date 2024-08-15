@@ -1,16 +1,17 @@
 import React from 'react';
 import css from '@/styles/home.module.css';
+import PostForm from '@/components/PostForm';
 
 const Home = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.left}>
-        <span className={css.left_postForm}></span>
-        <span classname={css.left_posts}></span>
+        <PostForm />
+        <span classname={css.left_posts}>Posts</span>
       </div>
       <div className={css.right}>
-        <div className={css.right_trends}></div>
-        <div className={css.right_suggestions}></div>
+        <div className={css.right_trends}>Trends</div>
+        <div className={css.right_suggestions}>Suggestions</div>
       </div>
     </div>
   );
