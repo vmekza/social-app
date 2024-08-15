@@ -1,5 +1,6 @@
 import { headers } from 'next/headers';
-import { Webhook } from 'svix'; // Ensure svix is installed
+import { Webhook } from 'svix';
+import { createUser } from '@/actions/user';
 
 export async function POST(req) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -42,12 +43,11 @@ export async function POST(req) {
   const eventType = evt.type;
   console.log(`Received event of type: ${eventType}`);
 
-  const { id, first_name, last_name, email_addresses, image_url, username } =
-    evt.data;
-
-  const email_address = email_addresses[0].email_address;
-
   if (eventType === 'user.created') {
+    const { id, first_name, last_name, email_addresses, image_url, username } =
+      evt.data;
+
+    const email_address = email_addresses[0].email_address;
     try {
       await createUser({
         id,
