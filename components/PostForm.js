@@ -38,7 +38,7 @@ const PostForm = () => {
           <Button
             className={css.btn_image_video}
             type='text'
-            // style={{ background: 'var(--primary)' }}
+            style={{ background: 'transparent' }}
           >
             <Flex>
               <Tooltip title='Image'>
@@ -59,6 +59,7 @@ const PostForm = () => {
             style={{
               background: 'var(--color-btn)',
               color: 'black',
+              fontWeight: 'bold',
             }}
           >
             Share

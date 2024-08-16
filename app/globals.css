@@ -16,10 +16,11 @@ body {
   --color-primary: #72c6c3;
   --shadow: 5px 4px 5px 0 rgba(0, 0, 0, 0.3);
   --color-btn: #00abb3;
-  --color-btn-hover: #358e8e;
+  --color-btn-hover: #25e7e7;
 }
 .cl-formButtonPrimary {
   font-size: 14px;
+  color: black;
   text-transform: none;
   background-color: #00abb3;
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -29,7 +30,7 @@ body {
 .cl-formButtonPrimary:focus,
 .cl-formButtonPrimary:active {
   transform: scale(1.05);
-  background-color: #358e8e;
+  background-color: #25e7e7;
 }
 .cl-internal-17ydaof {
   width: 22rem;
@@ -39,9 +40,10 @@ body {
 }
 .cl-internal-15amzqo {
   color: #00abb3;
+  font-weight: bold;
 }
 .cl-internal-15amzqo:hover {
-  color: #358e8e;
+  color: #25e7e7;
 }
 .ant-drawer-content-wrapper {
   width: 272px !important;

@@ -6,12 +6,14 @@
   padding: 1.5rem;
   box-shadow: var(--shadow);
   border-radius: 0.5rem;
-  position: relatoive;
+  position: relative;
 }
 .post_form_btn {
   padding: 0.5rem 0rem 0rem 2.5rem;
 }
 
 .btn_share:hover {
-  background-color: white;
+  background-color: var(--color-btn-hover) !important;
+  transform: scale(1.05) !important;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out !important;
 }
