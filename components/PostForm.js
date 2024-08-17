@@ -71,6 +71,7 @@ const PostForm = () => {
                   src={selectedFile}
                   className={css.preview_file}
                   controls
+                  height={'350px'}
                 />
               )}
             </div>
@@ -81,28 +82,31 @@ const PostForm = () => {
             align='center'
             justify='space-between'
           >
-            {' '}
-            <Button
-              type='text'
-              style={{ background: 'transparent', paddingRight: '0px' }}
-              onClick={() => imageInputRef.current.click()}
+            <div
+              className={`${css.btn_container} ${file ? css.no_margin : ''}`}
             >
-              <Tooltip title='Image'>
-                <Icon
-                  icon={'material-symbols:image-outline'}
-                  width={'1.5rem'}
-                ></Icon>
-              </Tooltip>
-            </Button>
-            <Button
-              type='text'
-              style={{ background: 'transparent' }}
-              onClick={() => videoInputRef.current.click()}
-            >
-              <Tooltip title='Video'>
-                <Icon icon={'mingcute:video-line'} width={'1.5rem'}></Icon>
-              </Tooltip>
-            </Button>
+              <Button
+                type='text'
+                style={{ background: 'transparent', paddingRight: '0px' }}
+                onClick={() => imageInputRef.current.click()}
+              >
+                <Tooltip title='Image'>
+                  <Icon
+                    icon={'material-symbols:image-outline'}
+                    width={'1.5rem'}
+                  ></Icon>
+                </Tooltip>
+              </Button>
+              <Button
+                type='text'
+                style={{ background: 'transparent' }}
+                onClick={() => videoInputRef.current.click()}
+              >
+                <Tooltip title='Video'>
+                  <Icon icon={'mingcute:video-line'} width={'1.5rem'}></Icon>
+                </Tooltip>
+              </Button>
+            </div>
             <Button
               type='primary'
               className={css.btn_share}
