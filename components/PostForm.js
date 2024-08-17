@@ -12,9 +12,21 @@ const PostForm = () => {
   const [post, setPost] = useState('');
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
+  const [file, setFile] = useState(null);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    if (file && file.size > 5 * 1024 * 1024) {
+      alert('File is too large. Please upload a file smaller than 5MB');
+      return;
+    }
+
+    if (
+      (file && file.type.startsWith('image/')) ||
+      file.type.startsWith('video/')
+    ) {
+      setFile(file.type.split('/')[0]);
+    }
   };
   return (
     <>
@@ -54,7 +66,11 @@ const PostForm = () => {
                 ></Icon>
               </Tooltip>
             </Button>
-            <Button type='text' style={{ background: 'transparent' }}>
+            <Button
+              type='text'
+              style={{ background: 'transparent' }}
+              onClick={() => videoInputRef.current.click()}
+            >
               <Tooltip title='Video'>
                 <Icon icon={'mingcute:video-line'} width={'1.5rem'}></Icon>
               </Tooltip>
