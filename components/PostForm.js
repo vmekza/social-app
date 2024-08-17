@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react';
 import css from '@/styles/postForm.module.css';
 import Block from '@/components/Block/Block';
-import { Avatar, Flex, Input, Button, Typography, Tooltip } from 'antd';
+import { Avatar, Flex, Input, Image, Button, Tooltip } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 
@@ -13,6 +13,7 @@ const PostForm = () => {
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
   const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -26,6 +27,12 @@ const PostForm = () => {
       file.type.startsWith('video/')
     ) {
       setFile(file.type.split('/')[0]);
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setSelectedFile(reader.result);
+      };
     }
   };
   return (
@@ -48,6 +55,27 @@ const PostForm = () => {
               onChange={(e) => setPost(e.target.value)}
             ></Input.TextArea>
           </Flex>
+          {file && (
+            <div class={css.preview_container}>
+              {file === 'image' && (
+                <Image
+                  src={selectedFile}
+                  className={css.preview_file}
+                  alt='preview of image'
+                  height={'350px'}
+                  width={'100%'}
+                />
+              )}
+              {file === 'video' && (
+                <video
+                  src={selectedFile}
+                  className={css.preview_file}
+                  controls
+                />
+              )}
+            </div>
+          )}
+
           <Flex
             className={css.post_form_btn}
             align='center'
