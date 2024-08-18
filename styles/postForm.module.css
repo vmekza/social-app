@@ -1,7 +1,6 @@
 .wrapper {
   border-radius: 0.5rem;
 }
-
 .post_form_container {
   padding: 1.5rem;
   box-shadow: var(--shadow);
@@ -11,30 +10,32 @@
 .post_form_btn {
   padding: 0.5rem 0rem 0rem 0rem;
 }
-
 .btn_container {
   margin-left: 2.4rem;
 }
 .no_margin {
   margin-left: -1rem;
 }
-
 .btn_share:hover {
   background-color: var(--color-btn-hover) !important;
   transform: scale(1.05) !important;
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out !important;
 }
-
 .preview_container {
   margin-top: 20px;
   border-radius: 0.5rem;
   overflow: hidden;
   position: relative;
   width: 100%;
+  position: relative;
 }
 .preview_file {
   width: 100%;
-
   border-radius: 0.5rem;
   object-fit: cover;
+}
+.preview_delete {
+  z-index: 2;
+  right: 1rem;
+  top: 1rem;
 }

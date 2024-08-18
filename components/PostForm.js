@@ -35,6 +35,11 @@ const PostForm = () => {
       };
     }
   };
+
+  const handleDeleteFile = (file) => {
+    setSelectedFile(null);
+    setFile(null);
+  };
   return (
     <>
       <div className={css.wrapper}>
@@ -57,6 +62,27 @@ const PostForm = () => {
           </Flex>
           {file && (
             <div class={css.preview_container}>
+              <Button
+                type='text'
+                className={css.preview_delete}
+                style={{
+                  position: 'absolute',
+                  background: '#7f7f7f',
+                  width: '2rem',
+                  height: '2rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: 0,
+                  border: 'none',
+                }}
+                onClick={handleDeleteFile}
+              >
+                <Icon
+                  icon={'streamline:delete-1-solid'}
+                  width={'1.2rem'}
+                ></Icon>
+              </Button>
               {file === 'image' && (
                 <Image
                   src={selectedFile}
