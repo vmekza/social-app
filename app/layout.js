@@ -3,6 +3,7 @@ import StyledComponentsRegistry from '@/lib/AntRegistry';
 import { ClerkProvider } from '@clerk/nextjs';
 import '@/styles/fonts.css';
 import { Roboto } from 'next/font/google';
+import QueryProvider from '@/lib/QueryProvider';
 
 const publicSans = Roboto({
   subsets: ['latin'],
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang='en'>
         <body className={publicSans.className}>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <QueryProvider>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>
