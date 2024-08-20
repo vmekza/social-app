@@ -6,6 +6,7 @@ import Block from '@/components/Block/Block';
 import { Avatar, Flex, Input, Image, Button, Tooltip } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
+import toast from 'react-hot-toast';
 
 const PostForm = () => {
   const { user } = useUser();
@@ -39,6 +40,16 @@ const PostForm = () => {
   const handleDeleteFile = (file) => {
     setSelectedFile(null);
     setFile(null);
+  };
+  const showError = (message = 'Oh no, something went wrong! Try again') => {
+    toast.error(message);
+  };
+
+  const sharePost = () => {
+    if ((post === '' || !post) && selectedFile) {
+      showError('Post cannot be empty');
+      return;
+    }
   };
   return (
     <>
@@ -142,6 +153,7 @@ const PostForm = () => {
                 fontWeight: 'bold',
                 marginLeft: 'auto',
               }}
+              onClick={sharePost}
             >
               Share
             </Button>
