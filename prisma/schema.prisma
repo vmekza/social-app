@@ -12,21 +12,57 @@ datasource db {
 }
 
 model User {
-  id            String  @id
+  id            String    @id
   email_address String?
   first_name    String?
   last_name     String?
   image_url     String?
   banner_id     String?
   banner_url    String?
-  username      String? @unique
+  username      String?   @unique
   posts         Post[]
+  Like          Like[]
+  Comment       Comment[]
+  Trend         Trend[]
 }
 
 model Post {
-  id       Int     @id @default(autoincrement())
-  postText String?
-  media    String?
-  author   User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId String
+  id        Int       @id @default(autoincrement())
+  postText  String?
+  media     String?
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  cld_id    String?
+  createdAt DateTime  @default(now())
+  likes     Like[]
+  comments  Comment[]
+  trends    Trend[]
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  createdAt DateTime @default(now())
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  comment   String?
+  createdAt DateTime @default(now())
+}
+
+model Trend {
+  id     Int     @id @default(autoincrement())
+  name   String
+  post   Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId Int
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 }
