@@ -20,4 +20,13 @@ model User {
   banner_id     String?
   banner_url    String?
   username      String? @unique
+  posts         Post[]
+}
+
+model Post {
+  id       Int     @id @default(autoincrement())
+  postText String?
+  media    String?
+  author   User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
 }
