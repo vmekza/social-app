@@ -12,7 +12,7 @@ import { createPost } from '@/actions/post';
 
 const PostForm = () => {
   const { user } = useUser();
-  const [post, setPost] = useState('');
+  const [postText, setPost] = useState('');
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
   const [file, setFile] = useState(null);
@@ -64,11 +64,11 @@ const PostForm = () => {
   };
 
   const sharePost = () => {
-    if ((post === '' || !post) && !selectedFile) {
+    if ((postText === '' || !postText) && !selectedFile) {
       showError('Post cannot be empty');
       return;
     }
-    execute({ post, media: selectedFile });
+    execute({ postText, media: selectedFile });
   };
   return (
     <>
@@ -86,7 +86,7 @@ const PostForm = () => {
             <Input.TextArea
               placeholder='Share your progress, your thoughts, or your next challenge...'
               style={{ height: 80, resize: 'none', flex: 1 }}
-              value={post}
+              value={postText}
               onChange={(e) => setPost(e.target.value)}
             ></Input.TextArea>
           </Flex>
