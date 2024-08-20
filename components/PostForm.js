@@ -7,6 +7,7 @@ import { Avatar, Flex, Input, Image, Button, Tooltip } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const PostForm = () => {
   const { user } = useUser();
@@ -15,6 +16,22 @@ const PostForm = () => {
   const videoInputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const queryClient = useQueryClient();
+  const { mutate: execute, isPending } = useMutation({
+    mutationFn: (data) => createPost(),
+    onSuccess: () => {
+      handleSuccess();
+      queryClient.invalidateQueries('posts');
+    },
+    onError: () => showError('Oh no, something went wrong! Try again'),
+  });
+
+  const handleSuccess = () => {
+    setSelectedFile(null);
+    setFile(null);
+    setPost('');
+    toast.success('Post shared successfully');
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -46,7 +63,7 @@ const PostForm = () => {
   };
 
   const sharePost = () => {
-    if ((post === '' || !post) && selectedFile) {
+    if ((post === '' || !post) && !selectedFile) {
       showError('Post cannot be empty');
       return;
     }
