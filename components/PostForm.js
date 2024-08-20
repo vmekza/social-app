@@ -8,6 +8,7 @@ import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createPost } from '@/actions/post';
 
 const PostForm = () => {
   const { user } = useUser();
@@ -18,7 +19,7 @@ const PostForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const queryClient = useQueryClient();
   const { mutate: execute, isPending } = useMutation({
-    mutationFn: (data) => createPost(),
+    mutationFn: (data) => createPost(data),
     onSuccess: () => {
       handleSuccess();
       queryClient.invalidateQueries('posts');
@@ -67,6 +68,7 @@ const PostForm = () => {
       showError('Post cannot be empty');
       return;
     }
+    execute({ post, media: selectedFile });
   };
   return (
     <>
