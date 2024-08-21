@@ -31,7 +31,6 @@ const HomeLayout = ({ children }) => {
               <Header />
               <div className={css.main_container}>
                 <Navigation />
-
                 <div className={css.page_content}>{children}</div>
               </div>
             </div>

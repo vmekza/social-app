@@ -48,3 +48,13 @@ body {
 .ant-drawer-content-wrapper {
   width: 272px !important;
 }
+:where(.css-dev-only-do-not-override-s5ro9h).ant-input:hover {
+  border-color: #00abb3 !important;
+}
+.ant-spin-dot-item {
+  background-color: #35bfc6 !important;
+}
+
+:where(.css-dev-only-do-not-override-s5ro9h).ant-input:focus {
+  border-color: #35bfc6 !important;
+}

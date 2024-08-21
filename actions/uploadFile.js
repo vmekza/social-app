@@ -1,5 +1,6 @@
 'use server';
 
+import { cld } from '@/lib/cloudinary';
 export const uploadFile = async (file, folder) => {
   try {
     const response = cld.v2.uploader.upload(

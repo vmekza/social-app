@@ -2,14 +2,14 @@
 
 import { db } from '@/lib/db';
 import { currentUser } from '@clerk/nextjs';
+import { uploadFile } from './uploadFile';
 
 export const createPost = async (post) => {
+  const { postText, media } = post;
   try {
-    const { postText, media } = post;
-    const user = await currentUser();
-
     let cld_id;
     let assetURL;
+    const user = await currentUser();
 
     if (media) {
       const response = await uploadFile(media, `/posts/${user?.id}`);
@@ -37,7 +37,7 @@ export const createPost = async (post) => {
       data: newPost,
     };
   } catch (e) {
-    console.log(e);
+    console.log(e?.message);
     throw new Error('Error creating post');
   }
 };
