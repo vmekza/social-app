@@ -8,9 +8,21 @@ export const createPost = async (post) => {
     const { postText, media } = post;
     const user = await currentUser();
 
+    let cld_id;
+    let assetURL;
+
+    if (media) {
+      const response = await uploadFile(media, `/posts/${user?.id}`);
+      const { public_id, secure_url } = response;
+      cld_id = public_id;
+      assetURL = secure_url;
+    }
+
     const newPost = await db.post.create({
       data: {
         postText,
+        media: assetURL,
+        cld_id,
         author: {
           connect: {
             id: user?.id,
