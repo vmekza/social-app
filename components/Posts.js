@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { getMyFeedPosts } from '@/actions/post';
 import { Flex, Spin, Typography } from 'antd';
 import { useInView } from 'react-intersection-observer';
+import Post from './Post';
 
 const Posts = () => {
   const { ref, inView } = useInView();
@@ -13,14 +14,22 @@ const Posts = () => {
       return true;
     } else return false;
   };
-  const { data, isLoading, isError, isSuccess, hasNextPage, fetchNextPage } =
-    useInfiniteQuery({
-      queryKey: 'posts',
-      queryFn: ({ pageParam = '' }) => getMyFeedPosts(pageParam),
-      getNextPageParam: (lastPage) => {
-        return lastPage?.metaData?.lastCursor;
-      },
-    });
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    isFetching,
+  } = useInfiniteQuery({
+    queryKey: 'posts',
+    queryFn: ({ pageParam = '' }) => getMyFeedPosts(pageParam),
+    getNextPageParam: (lastPage) => {
+      return lastPage?.metaData?.lastCursor;
+    },
+  });
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -35,7 +44,7 @@ const Posts = () => {
     return (
       <Flex vertical align='center' gap='large'>
         <Spin />
-        <Typography>Wait a second... It is loading...</Typography>
+        <Typography>Wait a second... Loading...</Typography>
       </Flex>
     );
   }
@@ -55,7 +64,7 @@ const Posts = () => {
                 }}
                 ref={ref}
               >
-                <span>Post</span>
+                <Post data={post} />
               </div>
             ) : (
               <div
@@ -67,10 +76,16 @@ const Posts = () => {
                   borderRadius: '0.5rem',
                 }}
               >
-                <span>Post</span>
+                <Post data={post} />
               </div>
             )
           )
+        )}
+        {(isLoading || isFetchingNextPage || isFetching) && (
+          <Flex vertical align='center' gap='large'>
+            <Spin />
+            <Typography>Wait a second... Loading...</Typography>
+          </Flex>
         )}
       </Flex>
     );
