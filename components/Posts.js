@@ -24,7 +24,7 @@ const Posts = () => {
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      console.log('fetching next page');
+      fetchNextPage();
     }
   }, [hasNextPage, inView, fetchNextPage]);
 
