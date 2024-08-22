@@ -62,6 +62,7 @@ export const getMyFeedPosts = async (lastCursor) => {
         createdAt: 'desc',
       },
     });
+
     if (posts.length === 0) {
       return {
         data: [],
@@ -78,6 +79,9 @@ export const getMyFeedPosts = async (lastCursor) => {
       skip: 1,
       cursor: {
         id: cursor,
+      },
+      orderBy: {
+        createdAt: 'desc',
       },
     });
 
