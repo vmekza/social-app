@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { currentUser } from '@clerk/nextjs';
 import { uploadFile } from './uploadFile';
 
+// Create post
 export const createPost = async (post) => {
   const { postText, media } = post;
   try {
@@ -39,5 +40,56 @@ export const createPost = async (post) => {
   } catch (e) {
     console.log(e?.message);
     throw new Error('Error creating post');
+  }
+};
+
+// Get post
+export const getMyFeedPosts = async (lastCursor) => {
+  try {
+    const take = 5;
+    const posts = await db.post.findMany({
+      include: {
+        author: true,
+      },
+      take,
+      ...(lastCursor && {
+        skip: 1,
+        cursor: {
+          id: lastCursor,
+        },
+      }),
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    if (posts.length === 0) {
+      return {
+        data: [],
+        metaData: {
+          lastCursor: null,
+          hasMore: false,
+        },
+      };
+    }
+    const lastPostInResults = posts[posts.length - 1];
+    const cursor = lastPostInResults.id;
+    const morePosts = await db.post.findMany({
+      take,
+      skip: 1,
+      cursor: {
+        id: cursor,
+      },
+    });
+
+    return {
+      data: posts,
+      metaData: {
+        lastCursor: cursor,
+        hasMore: morePosts.length > 0,
+      },
+    };
+  } catch (e) {
+    console.log(e?.message);
+    throw new Error('Error getting posts');
   }
 };
