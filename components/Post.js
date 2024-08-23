@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '@/styles/post.module.css';
-import { Avatar, Flex, Typography } from 'antd';
+import { Avatar, Flex, Typography, Image } from 'antd';
 import Block from './Block/Block';
 import dayjs from 'dayjs';
 
@@ -23,6 +23,22 @@ const Post = ({ data }) => {
               </Flex>
             </Flex>
           </Flex>
+          <Typography.Text>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data?.postText?.replace(/\n/g, '<br/>'),
+              }}
+            />
+          </Typography.Text>
+          {getFileType(data?.medi) === 'image' && (
+            <div className={css.post_media}>
+              <Image
+                src={data?.media}
+                alt='post media'
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          )}
         </div>
       </Block>
     </div>

@@ -54,27 +54,11 @@ const Posts = () => {
         {data?.pages?.map((page) =>
           page?.data?.map((post, index) =>
             checkLastViewRef(index, page) ? (
-              <div
-                key={post?.id}
-                style={{
-                  width: '100%',
-                  background: 'blue',
-                  height: '30rem',
-                }}
-                ref={ref}
-              >
+              <div key={post?.id} ref={ref}>
                 <Post data={post} />
               </div>
             ) : (
-              <div
-                key={post?.id}
-                style={{
-                  width: '100%',
-                  background: 'blue',
-                  height: '30rem',
-                  borderRadius: '0.5rem',
-                }}
-              >
+              <div key={post?.id}>
                 <Post data={post} />
               </div>
             )
