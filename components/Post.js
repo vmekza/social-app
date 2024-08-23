@@ -3,6 +3,7 @@ import css from '@/styles/post.module.css';
 import { Avatar, Flex, Typography, Image } from 'antd';
 import Block from './Block/Block';
 import dayjs from 'dayjs';
+import { getFileType } from '@/utils';
 
 const Post = ({ data }) => {
   return (
@@ -30,12 +31,13 @@ const Post = ({ data }) => {
               }}
             />
           </Typography.Text>
-          {getFileType(data?.medi) === 'image' && (
+          {getFileType(data?.media) === 'image' && (
             <div className={css.post_media}>
               <Image
+                className={css.post_image}
                 src={data?.media}
                 alt='post media'
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', borderRadius: '0.3rem' }}
               />
             </div>
           )}
