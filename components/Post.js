@@ -34,10 +34,23 @@ const Post = ({ data }) => {
           {getFileType(data?.media) === 'image' && (
             <div className={css.post_media}>
               <Image
-                className={css.post_image}
                 src={data?.media}
                 alt='post media'
-                style={{ objectFit: 'cover', borderRadius: '0.3rem' }}
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          )}
+          {getFileType(data?.media) === 'video' && (
+            <div className={css.post_media}>
+              <video
+                src={data?.media}
+                controls
+                alt='post media'
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '0.5rem',
+                }}
               />
             </div>
           )}

@@ -10,16 +10,18 @@
   padding: 1rem;
   border-radius: 0.5rem;
 }
-/* .post_image:hover {
-  border-radius: 0.5rem !important;
-} */
-.post_image {
-  object-fit: cover;
+.post_media {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
   border-radius: 0.5rem;
-  transition: transform 0.3s ease; /* Smooth zoom effect */
+  display: flex;
 }
 
-.post_image:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  border-radius: 0.5rem; /* Ensure border-radius stays the same */
+.post_media video {
+  max-height: 40rem;
+}
+.post_media img {
+  object-fit: cover;
 }
