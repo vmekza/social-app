@@ -2,6 +2,7 @@ import React from 'react';
 import css from '@/styles/post.module.css';
 import { Avatar, Flex, Typography } from 'antd';
 import Block from './Block/Block';
+import dayjs from 'dayjs';
 
 const Post = ({ data }) => {
   return (
@@ -16,6 +17,9 @@ const Post = ({ data }) => {
                   {data?.author?.first_name} {''}
                   {data?.author?.last_name}
                 </Typography>
+                <Typography.Text className='dateType' type='secondary' strong>
+                  {dayjs(data?.created_at).format('DD MMM YYYY')}
+                </Typography.Text>
               </Flex>
             </Flex>
           </Flex>

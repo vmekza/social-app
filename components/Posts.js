@@ -60,7 +60,6 @@ const Posts = () => {
                   width: '100%',
                   background: 'blue',
                   height: '30rem',
-                  borderRadius: '0.5rem',
                 }}
                 ref={ref}
               >
