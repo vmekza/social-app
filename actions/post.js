@@ -101,7 +101,7 @@ export const getMyFeedPosts = async (lastCursor) => {
 };
 
 // Update post like
-export const updatePostLike = async (postId, actionType) => {
+export const updatePostLike = async (postId, type) => {
   try {
     const { id: userId } = await currentUser();
     const post = await db.post.findMany({
@@ -112,12 +112,40 @@ export const updatePostLike = async (postId, actionType) => {
         likes: true,
       },
     });
+
+    // check if post exists
     if (!post) {
       return {
         error: 'Post not found',
       };
     }
+
+    // check whether user has already liked the post or not
     const like = post.likes.find((like) => like.authorId === userId);
+
+    // if user has already liked the post
+    if (like) {
+      if (type === 'like') {
+        return {
+          data: post,
+        };
+      } else {
+        await db.like.delete({
+          where: {
+            id: like.id,
+          },
+        });
+        console.log('Like deleted');
+      }
+    } else {
+      if (type === 'unlike') {
+        return {
+          data: post,
+        };
+      }
+    }
+
+    // then delete the like
   } catch (e) {
     console.log(e?.message);
     throw new Error('Error updating post like');
