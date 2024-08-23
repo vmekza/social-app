@@ -69,7 +69,7 @@ const Post = ({ data, queryId }) => {
               likes={data?.likes}
               queryId={queryId}
             />
-            <span>Comments</span>
+            {/* <span>Comments</span> */}
           </Flex>
         </div>
       </Block>

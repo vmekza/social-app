@@ -99,3 +99,27 @@ export const getMyFeedPosts = async (lastCursor) => {
     throw new Error('Error getting posts');
   }
 };
+
+// Update post like
+export const updatePostLike = async (postId, actionType) => {
+  try {
+    const { id: userId } = await currentUser();
+    const post = await db.post.findMany({
+      where: {
+        id: postId,
+      },
+      include: {
+        likes: true,
+      },
+    });
+    if (!post) {
+      return {
+        error: 'Post not found',
+      };
+    }
+    const like = post.likes.find((like) => like.authorId === userId);
+  } catch (e) {
+    console.log(e?.message);
+    throw new Error('Error updating post like');
+  }
+};
