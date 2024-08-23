@@ -2,7 +2,7 @@
   border-radius: 0.5rem;
 }
 .post_form_container {
-  padding: 1.5rem;
+  padding: 1.5rem 1rem 1.5rem 1rem;
   box-shadow: var(--shadow);
   border-radius: 0.5rem;
   position: relative;

@@ -50,6 +50,8 @@ export const getMyFeedPosts = async (lastCursor) => {
     const posts = await db.post.findMany({
       include: {
         author: true,
+        likes: true,
+        comments: true,
       },
       take,
       ...(lastCursor && {

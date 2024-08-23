@@ -7,7 +7,7 @@ import { Flex, Spin, Typography } from 'antd';
 import { useInView } from 'react-intersection-observer';
 import Post from './Post';
 
-const Posts = () => {
+const Posts = ({ id = 'all' }) => {
   const { ref, inView } = useInView();
   const checkLastViewRef = (index, page) => {
     if (index === page?.data?.length - 1) {
@@ -24,7 +24,7 @@ const Posts = () => {
     isFetchingNextPage,
     isFetching,
   } = useInfiniteQuery({
-    queryKey: 'posts',
+    queryKey: ['posts', id],
     queryFn: ({ pageParam = '' }) => getMyFeedPosts(pageParam),
     getNextPageParam: (lastPage) => {
       return lastPage?.metaData?.lastCursor;
@@ -55,11 +55,11 @@ const Posts = () => {
           page?.data?.map((post, index) =>
             checkLastViewRef(index, page) ? (
               <div key={post?.id} ref={ref}>
-                <Post data={post} />
+                <Post data={post} queryId={id} />
               </div>
             ) : (
               <div key={post?.id}>
-                <Post data={post} />
+                <Post data={post} queryId={id} />
               </div>
             )
           )

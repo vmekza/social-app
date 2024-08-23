@@ -4,15 +4,24 @@ import { Avatar, Flex, Typography, Image } from 'antd';
 import Block from './Block/Block';
 import dayjs from 'dayjs';
 import { getFileType } from '@/utils';
+import LikeButton from './LikeButton';
 
-const Post = ({ data }) => {
+const Post = ({ data, queryId }) => {
   return (
     <div className={css.wrapper}>
       <Block>
         <div className={css.post_container}>
           <Flex align='center' justify='space-between'>
             <Flex gap={'0.5rem'} align='center'>
-              <Avatar size={40} src={data?.author?.image_url} />
+              <Avatar
+                style={{
+                  width: '2.6rem',
+                  height: '2.6rem',
+                  boxShadow: 'var(--shadow)',
+                  marginRight: '0.5rem',
+                }}
+                src={data?.author?.image_url}
+              />
               <Flex vertical>
                 <Typography className='subtitle2'>
                   {data?.author?.first_name} {''}
@@ -54,6 +63,14 @@ const Post = ({ data }) => {
               />
             </div>
           )}
+          <Flex>
+            <LikeButton
+              postId={data?.id}
+              likes={data?.likes}
+              queryId={queryId}
+            />
+            <span>Comments</span>
+          </Flex>
         </div>
       </Block>
     </div>
