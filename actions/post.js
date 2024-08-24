@@ -138,14 +138,44 @@ export const updatePostLike = async (postId, type) => {
         console.log('Like deleted');
       }
     } else {
+      // if user unlikes the post
       if (type === 'unlike') {
         return {
           data: post,
         };
       }
+      // user tries to like the post
+      else {
+        await db.like.create({
+          data: {
+            post: {
+              connect: {
+                id: postId,
+              },
+            },
+            author: {
+              connect: {
+                id: userId,
+              },
+            },
+          },
+        });
+        console.log('like created');
+      }
     }
+    const updatePost = await db.post.findUnique({
+      where: {
+        id: postId,
+      },
+      include: {
+        likes: true,
+      },
+    });
 
-    // then delete the like
+    console.log(updatePost);
+    return {
+      data: updatePost,
+    };
   } catch (e) {
     console.log(e?.message);
     throw new Error('Error updating post like');
