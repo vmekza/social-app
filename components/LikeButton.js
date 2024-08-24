@@ -4,6 +4,7 @@ import { Button, Flex, Typography } from 'antd';
 import { Icon } from '@iconify/react';
 import { HappyProvider } from '@ant-design/happy-work-theme';
 import { useMutation } from '@tanstack/react-query';
+import { updatePostLike } from '@/actions/post';
 
 const LikeButton = ({ postId, likes, queryId }) => {
   const { user } = useUser();
@@ -16,7 +17,7 @@ const LikeButton = ({ postId, likes, queryId }) => {
   const actionType = isLiked ? 'unlike' : 'like';
 
   const { mutate } = useMutation({
-    mutationFn: (postId, actionType) => updatePostLike(postId, actionType),
+    mutationFn: (params) => updatePostLike(params),
   });
 
   return (
@@ -24,7 +25,7 @@ const LikeButton = ({ postId, likes, queryId }) => {
       <Button
         size='small'
         style={{ background: 'transparent', border: 'none', boxShadow: 'none' }}
-        onClick={() => mutate(postId, actionType)}
+        onClick={() => mutate({ postId, actionType })}
       >
         <Flex gap={'0.5rem'} align='center'>
           <Icon

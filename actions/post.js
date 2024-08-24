@@ -101,10 +101,11 @@ export const getMyFeedPosts = async (lastCursor) => {
 };
 
 // Update post like
-export const updatePostLike = async (postId, type) => {
+export const updatePostLike = async (params) => {
+  const { postId, actionType: type } = params;
   try {
     const { id: userId } = await currentUser();
-    const post = await db.post.findMany({
+    const post = await db.post.findUnique({
       where: {
         id: postId,
       },
