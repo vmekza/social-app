@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Flex, Button } from 'antd';
 import { Icon } from '@iconify/react';
 import css from '@/styles/commentArea.module.css';
+import CommentInput from './CommentInput';
 
 const CommentArea = ({ comments, postId, queryId }) => {
   const [openComments, setOpenComments] = useState(false);
@@ -28,7 +29,7 @@ const CommentArea = ({ comments, postId, queryId }) => {
           </Flex>
         )}
       </>
-      <CommentInput></CommentInput>
+      <CommentInput queryId={queryId} postId={postId}></CommentInput>
     </Flex>
   );
 };
