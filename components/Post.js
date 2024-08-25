@@ -5,6 +5,7 @@ import Block from './Block/Block';
 import dayjs from 'dayjs';
 import { getFileType } from '@/utils';
 import LikeButton from './LikeButton';
+import Comment from './Comment';
 
 const Post = ({ data, queryId }) => {
   return (
@@ -69,7 +70,7 @@ const Post = ({ data, queryId }) => {
               likes={data?.likes}
               queryId={queryId}
             />
-            {/* <span>Comments</span> */}
+            <Comment comments={data?.comments?.length} />
           </Flex>
         </div>
       </Block>

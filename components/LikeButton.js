@@ -53,6 +53,12 @@ const LikeButton = ({ postId, likes, queryId }) => {
       });
       return { previousPosts };
     },
+    onError: (error, variables, context) => {
+      queryClient.setQueryData(['posts'], context.previousPosts);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(['posts']);
+    },
   });
 
   return (
