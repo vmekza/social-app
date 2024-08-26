@@ -29,7 +29,11 @@ const CommentArea = ({ comments, postId, queryId }) => {
           </Flex>
         )}
       </>
-      <CommentInput queryId={queryId} postId={postId}></CommentInput>
+      <CommentInput
+        setOpenComments={setOpenComments}
+        queryId={queryId}
+        postId={postId}
+      ></CommentInput>
     </Flex>
   );
 };

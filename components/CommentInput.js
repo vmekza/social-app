@@ -1,10 +1,11 @@
+import { Flex } from 'antd';
 import React from 'react';
 
-const CommentInput = ({ comments }) => {
+const CommentInput = ({ postId, setOpenComments, queryId }) => {
   return (
-    <div>
-      <h1>CommentInput</h1>
-    </div>
+    <Flex gap={'1rem'} align='center'>
+      <Avatar src={user?.imageUrl} size={40} style={{ minWidth: '40px' }} />
+    </Flex>
   );
 };
 
