@@ -183,3 +183,32 @@ export const updatePostLike = async (postId, type) => {
     throw new Error('Error updating post like');
   }
 };
+
+// Add comment
+export const addComment = async (postId, comment) => {
+  try {
+    const { id: userId } = await currentUser();
+    const newComment = await db.comment.create({
+      data: {
+        comment,
+        post: {
+          connect: {
+            id: postId,
+          },
+        },
+        author: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+    });
+    console.log(newComment);
+    return {
+      data: newComment,
+    };
+  } catch (e) {
+    console.log(e?.message);
+    throw new Error('Error adding comment');
+  }
+};
