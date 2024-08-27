@@ -4,16 +4,17 @@ import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addComment } from '@/actions/post';
+import toast from 'react-hot-toast';
 
 const CommentInput = ({ postId, setOpenComments, queryId }) => {
   const { user } = useUser();
   const [value, setValue] = useState('');
   const queryClient = useQueryClient();
-
   const { isPending, mutate } = useMutation({
     mutationFn: (postId) => addComment(postId, value),
+
     onMutate: async () => {
-      setExpanded(true);
+      setOpenComments(true);
 
       await queryClient.cancelQueries(['posts', queryId]);
       const previousPosts = queryClient.getQueryData(['posts', queryId]);

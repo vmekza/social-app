@@ -10,9 +10,16 @@ const CommentArea = ({ comments, postId, queryId }) => {
     <Flex vertical gap={'1rem'}>
       <>
         {comments?.length > 1 && (
-          <Button type='text' onClick={() => setOpenComments((prev) => !prev)}>
+          <Button
+            type='text'
+            // style={{ marginRight: '1rem' }}
+            onClick={() => setOpenComments((prev) => !prev)}
+          >
             <Flex>
-              <Icon icon='ooui:expand' />
+              <Icon
+                icon='ooui:expand'
+                style={{ marginRight: '0.8rem', marginTop: '0.2rem' }}
+              />
               Show more comments
             </Flex>
           </Button>
