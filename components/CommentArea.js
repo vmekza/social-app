@@ -3,6 +3,7 @@ import { Flex, Button } from 'antd';
 import { Icon } from '@iconify/react';
 import css from '@/styles/commentArea.module.css';
 import CommentInput from './CommentInput';
+import Comment from './Comment';
 
 const CommentArea = ({ comments, postId, queryId }) => {
   const [openComments, setOpenComments] = useState(false);
@@ -10,11 +11,7 @@ const CommentArea = ({ comments, postId, queryId }) => {
     <Flex vertical gap={'1rem'}>
       <>
         {comments?.length > 1 && (
-          <Button
-            type='text'
-            // style={{ marginRight: '1rem' }}
-            onClick={() => setOpenComments((prev) => !prev)}
-          >
+          <Button type='text' onClick={() => setOpenComments((prev) => !prev)}>
             <Flex>
               <Icon
                 icon='ooui:expand'
@@ -27,10 +24,10 @@ const CommentArea = ({ comments, postId, queryId }) => {
         {comments?.length > 0 && (
           <Flex vertical gap={'0.5rem'} className={css.comment_area_container}>
             {!openComments ? (
-              <span>Not displayed</span>
+              <Comment data={comments[comments.length - 1]} />
             ) : (
               comments.map((c, index) => (
-                <span key={index}>Dispalyed comments</span>
+                <Comment key={index} data={comments} />
               ))
             )}
           </Flex>

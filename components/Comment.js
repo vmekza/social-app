@@ -1,21 +1,22 @@
 import React from 'react';
-import { Button, Flex, Typography } from 'antd';
-import { Icon } from '@iconify/react';
+import { SettingContext } from '@/context/settings/setting-context';
+import { Avatar, Flex } from 'antd';
+import Block from './Block/Block';
 
-const Comment = ({ comments }) => {
+const Comment = ({ data }) => {
+  const {
+    settings: { theme },
+  } = useContext(SettingContext);
+
   return (
-    <Button type='text' size='small'>
-      <Flex gap='0.5rem' align='center'>
-        <Icon
-          icon='material-symbols:comment-outline'
-          width={'21px'}
-          color='grey'
-        />
-        <Typography.Text>
-          {comments > 0 ? `${comments} Comments` : 'Comment'}
-        </Typography.Text>
-      </Flex>
-    </Button>
+    <Block>
+      <Avatar
+        src={data?.author?.image_url}
+        size={30}
+        style={{ boxShadow: 'var(--shadow)' }}
+      />
+      <Flex vertical flex={1} gap={'0.5rem'}></Flex>
+    </Block>
   );
 };
 

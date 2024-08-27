@@ -5,7 +5,7 @@ import Block from './Block/Block';
 import dayjs from 'dayjs';
 import { getFileType } from '@/utils';
 import LikeButton from './LikeButton';
-import Comment from './Comment';
+import CommentBtn from './CommentBtn';
 import CommentArea from './CommentArea';
 
 const Post = ({ data, queryId }) => {
@@ -71,7 +71,7 @@ const Post = ({ data, queryId }) => {
               likes={data?.likes}
               queryId={queryId}
             />
-            <Comment comments={data?.comments?.length} />
+            <CommentBtn comments={data?.comments?.length} />
           </Flex>
           <CommentArea
             comments={data?.comments}
