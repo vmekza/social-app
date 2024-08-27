@@ -18,10 +18,14 @@
   border-radius: 0.5rem;
   display: flex;
 }
-
 .post_media video {
   max-height: 40rem;
 }
 .post_media img {
   object-fit: cover;
+}
+.comment_person {
+  background-color: #f0f3f4;
+  border-radius: 1rem;
+  padding: 1rem;
 }

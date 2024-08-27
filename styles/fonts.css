@@ -64,6 +64,7 @@
   font-family: inherit;
   line-height: calc(22px / 14px);
   font-size: 0.875rem;
+  /* color: black; */
 }
 /* Use */
 .dateType {

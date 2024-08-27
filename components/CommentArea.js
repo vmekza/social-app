@@ -26,9 +26,7 @@ const CommentArea = ({ comments, postId, queryId }) => {
             {!openComments ? (
               <Comment data={comments[comments.length - 1]} />
             ) : (
-              comments.map((c, index) => (
-                <Comment key={index} data={comments} />
-              ))
+              comments.map((c, index) => <Comment key={index} data={c} />)
             )}
           </Flex>
         )}

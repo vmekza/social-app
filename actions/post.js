@@ -51,7 +51,11 @@ export const getMyFeedPosts = async (lastCursor) => {
       include: {
         author: true,
         likes: true,
-        comments: true,
+        comments: {
+          include: {
+            author: true,
+          },
+        },
       },
       take,
       ...(lastCursor && {
