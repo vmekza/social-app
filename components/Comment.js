@@ -1,5 +1,5 @@
 import React from 'react';
-import { SettingContext } from '@/context/settings/setting-context';
+// import { SettingContext } from '@/context/settings/setting-context';
 import { Avatar, Flex, Typography } from 'antd';
 import Block from './Block/Block';
 import dayjs from 'dayjs';
@@ -7,9 +7,9 @@ import { useContext } from 'react';
 import css from '@/styles/post.module.css';
 
 const Comment = ({ data }) => {
-  const {
-    settings: { theme },
-  } = useContext(SettingContext);
+  //   const {
+  //     settings: { theme },
+  //   } = useContext(SettingContext);
 
   return (
     <Block>
@@ -19,9 +19,9 @@ const Comment = ({ data }) => {
           size={30}
           style={{ boxShadow: 'var(--shadow)' }}
         />
-        <Flex className={css.comment_person} vertical flex={1} gap={'0.5rem'}>
+        <Flex className={css.comment_person} vertical flex={1} gap={'0.2rem'}>
           <Flex align='center' justify='space-between'>
-            <Typography.Text>
+            <Typography.Text strong>
               {data?.author?.first_name} {data?.author?.last_name}
             </Typography.Text>
             <Typography.Text type='secondary' className='dateType' strong>
