@@ -3,6 +3,7 @@
 import { db } from '@/lib/db';
 import { currentUser } from '@clerk/nextjs';
 import { uploadFile } from './uploadFile';
+import { checkTrends } from '@/utils';
 
 // Create post
 export const createPost = async (post) => {
@@ -32,6 +33,9 @@ export const createPost = async (post) => {
       },
     });
     const trends = checkTrends(postText);
+    if (trends.length > 0) {
+      createTrend(trends, newPost.id);
+    }
     return {
       data: newPost,
     };
@@ -212,5 +216,23 @@ export const addComment = async (postId, comment) => {
   } catch (e) {
     console.log(e?.message);
     throw new Error('Error adding comment');
+  }
+};
+
+// Create trend
+export const createTrend = async (trends, postId) => {
+  try {
+    const newTrends = await db.trend.createMany({
+      data: trends.map((trend) => ({
+        name: trend,
+        postId: postId,
+      })),
+    });
+    return {
+      data: newTrends,
+    };
+  } catch (e) {
+    console.log(e?.message);
+    throw new Error('Error creating trend');
   }
 };
