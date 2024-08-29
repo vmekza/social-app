@@ -29,3 +29,11 @@ export const updateQueryCacheLikes = (
     return postLikes.filter((like) => like.authorId !== userId);
   }
 };
+
+export const checkTrends = (postText = '') => {
+  const firstSplit = postText
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.startsWith('#'))
+    .map((word) => word.toLowerCase());
+};

@@ -31,9 +31,7 @@ export const createPost = async (post) => {
         },
       },
     });
-
-    console.log(newPost);
-
+    const trends = checkTrends(postText);
     return {
       data: newPost,
     };
