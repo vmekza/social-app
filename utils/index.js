@@ -36,4 +36,19 @@ export const checkTrends = (postText = '') => {
     .split(/\s+/)
     .filter((word) => word.startsWith('#'))
     .map((word) => word.toLowerCase());
+
+  let response = firstSplit;
+
+  firstSplit.map((word) => {
+    const secondSplit = word.split('#');
+    if (secondSplit.length > 1) {
+      response = [
+        ...response,
+        ...secondSplit.slice(1, secondSplit.length),
+      ].filter((el) => el !== word);
+    }
+  });
+
+  response = [...new Set(response)];
+  return response;
 };
