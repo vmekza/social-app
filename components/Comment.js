@@ -1,5 +1,4 @@
 import React from 'react';
-// import { SettingContext } from '@/context/settings/setting-context';
 import { Avatar, Flex, Typography } from 'antd';
 import Block from './Block/Block';
 import dayjs from 'dayjs';

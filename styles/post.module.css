@@ -2,6 +2,7 @@
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
   overflow: hidden;
+  margin-left: 1.3rem;
 }
 .post_container {
   display: flex;
