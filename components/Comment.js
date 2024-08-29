@@ -3,14 +3,9 @@ import React from 'react';
 import { Avatar, Flex, Typography } from 'antd';
 import Block from './Block/Block';
 import dayjs from 'dayjs';
-import { useContext } from 'react';
 import css from '@/styles/post.module.css';
 
 const Comment = ({ data }) => {
-  //   const {
-  //     settings: { theme },
-  //   } = useContext(SettingContext);
-
   return (
     <Block>
       <Flex gap={'0.5rem'}>
