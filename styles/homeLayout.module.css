@@ -5,6 +5,7 @@
   min-width: 100vw;
   flex-direction: column;
   overflow: scroll;
+  padding: 0 1.3rem;
 }
 .main_container {
   display: flex;

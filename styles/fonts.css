@@ -18,8 +18,8 @@
   line-height: 1.5rem;
   font-size: 1.5rem;
 }
-
-.typoH4 {
+/* Used */
+.fontHeader {
   font-family: inherit;
   font-weight: 700;
   line-height: 1.5rem;

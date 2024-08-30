@@ -239,7 +239,7 @@ export const createTrend = async (trends, postId) => {
 
 // Get trends
 
-export const getPopularTrends = async () => {
+export const getTrends = async () => {
   try {
     const trends = await db.trend.groupBy({
       by: ['name'],
