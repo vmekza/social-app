@@ -1,7 +1,6 @@
 import React from 'react';
+import css from '@/styles/trends.module.css';
 
-const Trends = () => {
-  return <div>Trends</div>;
-};
+const Trends = () => {};
 
 export default Trends;

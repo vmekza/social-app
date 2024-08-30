@@ -236,3 +236,27 @@ export const createTrend = async (trends, postId) => {
     throw new Error('Error creating trend');
   }
 };
+
+// Get trends
+
+export const getPopularTrends = async () => {
+  try {
+    const trends = await db.trend.groupBy({
+      by: ['name'],
+      _count: {
+        name: true,
+      },
+      orderBy: {
+        _count: {
+          name: 'desc',
+        },
+      },
+      take: 3,
+    });
+    return {
+      data: trends,
+    };
+  } catch (e) {
+    throw e;
+  }
+};
