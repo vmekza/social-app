@@ -40,7 +40,8 @@
   font-size: 1.0625rem;
 }
 
-.typoSubtitle1 {
+/* Used */
+.subtitle1 {
   font-family: inherit;
   font-weight: 600;
   line-height: 1.5;

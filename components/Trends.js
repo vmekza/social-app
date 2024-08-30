@@ -20,11 +20,10 @@ const Trends = async () => {
           <AddIcon
             icon={'iconamoon:trend-up'}
             width={'10rem'}
-            height={'25rem'}
             style={{
               position: 'absolute',
               top: '0',
-              right: '0',
+              right: '10',
               zIndex: '0',
               color: 'var( --color-btn-hover)',
               opacity: '0.3',
@@ -32,10 +31,13 @@ const Trends = async () => {
           />
         </div>
         <Block className={css.trends_container}>
-          <Flex vertical style={{ padding: '.5rem' }}>
-            <Typography className='subtitle2'>TOP TRENDS</Typography>
-          </Flex>
-          <Flex vertical gap={'15px'}>
+          <Typography
+            style={{ marginTop: '0.8rem', marginLeft: '1rem' }}
+            className='subtitle2'
+          >
+            TOP TRENDS
+          </Typography>
+          <Flex vertical gap={'6px'}>
             {data.map((trend, index) => (
               <Flex key={index} gap={'1rem'} align='center'>
                 <Avatar
@@ -43,7 +45,7 @@ const Trends = async () => {
                   style={{
                     background: 'var(--color-primary)',
                     width: '2rem',
-                    marginLeft: '0.6rem',
+                    marginLeft: '1rem',
                   }}
                   icon={
                     <AddIcon
@@ -53,6 +55,15 @@ const Trends = async () => {
                     />
                   }
                 />
+                <Flex vertical>
+                  <Typography className='subtitle2'>{trend.name}</Typography>
+                  <Typography
+                    className='dateType'
+                    style={{ fontWeight: 'bold', color: 'gray' }}
+                  >
+                    {trend?._count?.name} Posts
+                  </Typography>
+                </Flex>
               </Flex>
             ))}
           </Flex>
