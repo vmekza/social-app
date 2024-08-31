@@ -7,13 +7,13 @@ import Trends from '@/components/Trends';
 const Home = () => {
   return (
     <div className={css.wrapper}>
-      <div className={css.left}>
+      <div className={css.home_left}>
         <PostForm />
         <Posts />
       </div>
-      <div className={css.right}>
+      <div className={css.home_right}>
         <Trends />
-        <div className={css.right_suggestions}>Suggestions</div>
+        <div className={css.home_right_suggestions}>Suggestions</div>
       </div>
     </div>
   );
