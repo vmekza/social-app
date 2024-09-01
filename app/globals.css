@@ -60,3 +60,20 @@ body {
 .ant-image-mask {
   border-radius: 0.5rem !important;
 }
+
+::-webkit-scrollbar {
+  width: 2px;
+  margin-left: 15px;
+}
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(246, 246, 246, 0.831);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(152, 152, 152, 0.804);
+}

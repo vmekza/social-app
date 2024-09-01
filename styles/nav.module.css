@@ -2,7 +2,7 @@
   min-width: 15rem;
   overflow: hidden;
   display: flex;
-  min-height: 50vh;
+  max-height: 81vh;
   border-radius: 0.5rem;
 }
 .nav_container {
