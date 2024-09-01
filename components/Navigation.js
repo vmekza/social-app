@@ -47,7 +47,7 @@ const Navigation = () => {
               href={route.route}
             >
               <Typography>
-                <Icon icon={route.icon} width={'25px'} />
+                <Icon icon={route.icon} width={'25px'} className={css.icon} />
               </Typography>
               <Typography className='subtitle2'>{route.name}</Typography>
             </Link>

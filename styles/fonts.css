@@ -54,9 +54,9 @@
   line-height: 1.571rem;
   font-size: 0.875rem;
 }
-.subtitle2:hover {
+/* .subtitle2:hover {
   transform: scale(1.2);
-}
+} */
 
 .typoBody1 {
   font-family: inherit;
