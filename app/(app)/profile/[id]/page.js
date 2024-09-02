@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const generateMetaData = (params) => {
+export const generateMetadata = (params) => {
   return {
     title: `${params?.searchParams?.person}'s profile page`,
     description: `Profile page of ${params?.params?.id}`,
