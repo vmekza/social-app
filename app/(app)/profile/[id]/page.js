@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileData from '@/sections/ProfileData/data/ProfileData';
 
 export const generateMetadata = (params) => {
   return {
@@ -6,8 +7,8 @@ export const generateMetadata = (params) => {
     description: `Profile page of ${params?.params?.id}`,
   };
 };
-const ProfilePage = () => {
-  return <div>Profile Page</div>;
+const ProfilePage = (params) => {
+  return <ProfileData userId={params?.params?.id} />;
 };
 
 export default ProfilePage;
