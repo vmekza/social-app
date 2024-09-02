@@ -100,8 +100,7 @@ export const getUser = async (id) => {
         banner_id: true,
       },
     });
-    console.log('User found');
-    return user;
+    return { data: user };
   } catch (e) {
     console.log(e);
     return {

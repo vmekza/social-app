@@ -3,8 +3,14 @@
 import React from 'react';
 import css from '@/styles/profileData.module.css';
 import ProfileTop from '@/components/ProfileTop';
+import { getUser } from '@/actions/user';
 
 const ProfileData = ({ userId }) => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => getUser(userId),
+  });
+
   return (
     <div className={css.wrapper}>
       <div className={css.profile_data_container}>
