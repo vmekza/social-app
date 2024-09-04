@@ -4,6 +4,9 @@ import { Image } from 'antd';
 
 const ProfileTop = (userId, data, isLoading, isError) => {
   const [bannerView, setBannerView] = useState(false);
+  const { use } = useUser();
+  const inputRef = useRef(null);
+  const [banner, setBanner] = useState(null);
   return (
     <div className={css.profile_top_container}>
       <div className={css.banner} onClick={() => setBannerView(true)}>
