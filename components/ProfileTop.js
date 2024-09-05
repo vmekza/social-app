@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import css from '@/styles/profileTop.module.css';
 import { Image } from 'antd';
+import { useUser } from '@clerk/nextjs';
 
 const ProfileTop = (userId, data, isLoading, isError) => {
   const [bannerView, setBannerView] = useState(false);
-  const { use } = useUser();
+  const { user } = useUser();
   const inputRef = useRef(null);
   const [banner, setBanner] = useState(null);
   return (
@@ -21,6 +22,14 @@ const ProfileTop = (userId, data, isLoading, isError) => {
             onVisibleChange: (visible) => setBannerView(visible),
           }}
         />
+        {userId === userId?.id && (
+          <div
+            className={css.btn_edit}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          ></div>
+        )}
       </div>
     </div>
   );
