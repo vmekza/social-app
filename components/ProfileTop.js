@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import css from '@/styles/profileTop.module.css';
 import { Image } from 'antd';
 import { useUser } from '@clerk/nextjs';
@@ -28,7 +28,16 @@ const ProfileTop = (userId, data, isLoading, isError) => {
             onClick={(e) => {
               e.stopPropagation();
             }}
-          ></div>
+          >
+            <input
+              accept='image/*'
+              type='file'
+              multiple={false}
+              ref={inputRef}
+              onChange={(e) => handleBannerChange(e)}
+              hidden
+            />
+          </div>
         )}
       </div>
     </div>
