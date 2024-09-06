@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+'use client';
+import React, { useState, useRef, useEffect } from 'react';
 import css from '@/styles/profileTop.module.css';
-import { Image } from 'antd';
+import { Image, Button } from 'antd';
 import { useUser } from '@clerk/nextjs';
+import { Icon } from '@iconify/react';
 
-const ProfileTop = (userId, data, isLoading, isError) => {
+const ProfileTop = ({ userId, data, isLoading, isError }) => {
   const [bannerView, setBannerView] = useState(false);
   const { user } = useUser();
   const inputRef = useRef(null);
@@ -22,7 +24,7 @@ const ProfileTop = (userId, data, isLoading, isError) => {
             onVisibleChange: (visible) => setBannerView(visible),
           }}
         />
-        {userId === userId?.id && (
+        {userId === user?.id && (
           <div
             className={css.btn_edit}
             onClick={(e) => {
@@ -31,12 +33,19 @@ const ProfileTop = (userId, data, isLoading, isError) => {
           >
             <input
               accept='image/*'
-              type='file'
               multiple={false}
               ref={inputRef}
               onChange={(e) => handleBannerChange(e)}
+              type='file'
               hidden
             />
+            <Button
+              onClick={() => inputRef.current.click()}
+              type='primary'
+              shape='circle'
+              style={{ background: 'var(--color-btn)' }}
+              icon={<Icon icon='ep:edit' width={'20px'} />}
+            ></Button>
           </div>
         )}
       </div>

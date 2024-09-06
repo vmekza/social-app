@@ -23,3 +23,9 @@
 .banner img {
   object-fit: cover;
 }
+.btn_edit {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
+}

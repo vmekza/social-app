@@ -16,10 +16,10 @@ const ProfileData = ({ userId }) => {
     <div className={css.wrapper}>
       <div className={css.profile_data_container}>
         <ProfileTop
-          userId={userId}
           data={data}
           isLoading={isLoading}
           isError={isError}
+          userId={userId}
         />
       </div>
     </div>
