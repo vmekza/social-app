@@ -1,6 +1,7 @@
 'use server';
 
 import { db } from '@/lib/db';
+import { uploadFile, deleteFile } from './uploadFile';
 
 // Create user
 export const createUser = async (user) => {
@@ -105,6 +106,42 @@ export const getUser = async (id) => {
     console.log(e);
     return {
       error: 'Error while getting user',
+    };
+  }
+};
+
+// Update banner
+export const updateBanner = async (params) => {
+  const { id, banner, prevBannerId } = params;
+  try {
+    let banner_id;
+    let banner_url;
+
+    // Existing banner
+    if (banner) {
+      const response = await uploadFile(banner, `/users/${id}`);
+      const { public_id, secure_url } = response;
+      banner_id = public_id;
+      banner_url = secure_url;
+
+      // Remove previous banner
+      if (prevBannerId) {
+        await deleteFile(prevBannerId);
+      }
+    }
+    await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        banner_id,
+        banner_url,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    return {
+      error: 'Error while updating banner',
     };
   }
 };

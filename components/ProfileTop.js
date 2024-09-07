@@ -1,17 +1,34 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import css from '@/styles/profileTop.module.css';
-import { Image, Button } from 'antd';
+import { Image, Button, Spin } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
+import { updateBanner } from '@/actions/user';
 
 const ProfileTop = ({ userId, data, isLoading, isError }) => {
   const [bannerView, setBannerView] = useState(false);
   const { user } = useUser();
   const inputRef = useRef(null);
   const [banner, setBanner] = useState(null);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: updateBanner,
+    onSuccess: () => {
+      toast.success('Banner updated successfully');
+    },
+    onError: () => {
+      toast.error('Failed to update banner');
+    },
+  });
+
+  useEffect(() => {
+    if (data?.data?.banner_url) {
+      setBanner(data?.data?.banner_url);
+    }
+  }, [data, setBanner]);
 
   const handleBannerUpdate = async (e) => {
     const file = e.target.files[0];
@@ -34,43 +51,45 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
   };
   return (
     <div className={css.profile_top_container}>
-      <div className={css.banner} onClick={() => setBannerView(true)}>
-        <Image
-          src={banner || '/images/gym.jpg'}
-          alt='banner'
-          width={'100%'}
-          height={'15rem'}
-          preview={{
-            mask: null,
-            visible: bannerView,
-            onVisibleChange: (visible) => setBannerView(visible),
-          }}
-        />
-        {userId === user?.id && (
-          <div
-            className={css.btn_edit}
-            onClick={(e) => {
-              e.stopPropagation();
+      <Spin spinning={isPending}>
+        <div className={css.banner} onClick={() => setBannerView(true)}>
+          <Image
+            src={banner || '/images/gym.jpg'}
+            alt='banner'
+            width={'100%'}
+            height={'15rem'}
+            preview={{
+              mask: null,
+              visible: bannerView,
+              onVisibleChange: (visible) => setBannerView(visible),
             }}
-          >
-            <input
-              accept='image/*'
-              multiple={false}
-              ref={inputRef}
-              onChange={(e) => handleBannerUpdate(e)}
-              type='file'
-              hidden
-            />
-            <Button
-              onClick={() => inputRef.current.click()}
-              type='primary'
-              shape='circle'
-              style={{ background: 'var(--color-btn)' }}
-              icon={<Icon icon='ep:edit' width={'20px'} />}
-            ></Button>
-          </div>
-        )}
-      </div>
+          />
+          {userId === user?.id && (
+            <div
+              className={css.btn_edit}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <input
+                accept='image/*'
+                multiple={false}
+                ref={inputRef}
+                onChange={(e) => handleBannerUpdate(e)}
+                type='file'
+                hidden
+              />
+              <Button
+                onClick={() => inputRef.current.click()}
+                type='primary'
+                shape='circle'
+                style={{ background: 'var(--color-btn)' }}
+                icon={<Icon icon='ep:edit' width={'20px'} />}
+              ></Button>
+            </div>
+          )}
+        </div>
+      </Spin>
     </div>
   );
 };
