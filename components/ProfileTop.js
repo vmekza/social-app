@@ -7,6 +7,7 @@ import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import { updateBanner } from '@/actions/user';
+import Block from '@/components/Block';
 
 const ProfileTop = ({ userId, data, isLoading, isError }) => {
   const [bannerView, setBannerView] = useState(false);
@@ -90,6 +91,19 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
           )}
         </div>
       </Spin>
+      <Block className={css.profile_top_footer}>
+        <div className={css.footer_left}>
+          <div className={css.footer_left_profile}>
+            <div className={css.profile_image}>
+              <Image
+                src={data?.data?.image_url || '/images/avatar.png'}
+                alt='profile'
+                preview={{ mask: null }}
+              />
+            </div>
+          </div>
+        </div>
+      </Block>
     </div>
   );
 };
