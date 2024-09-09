@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import css from '@/styles/profileTop.module.css';
-import { Image, Button, Spin } from 'antd';
+import { Image, Button, Spin, Skeleton } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
@@ -96,10 +96,24 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
           <div className={css.footer_left_profile}>
             <div className={css.profile_image}>
               <Image
-                src={data?.data?.image_url || '/images/avatar.png'}
+                src={data?.data?.image_url || '/images/logo.png'}
                 alt='profile'
                 preview={{ mask: null }}
               />
+            </div>
+            <div className={css.profile_info}>
+              {!isLoading ? (
+                <>
+                  <Text className={'profileType'}>
+                    {data?.data?.first_name} {data?.data?.last_name}
+                  </Text>
+                  <Text className={'typoBody1'} type='secondary'>
+                    @{data?.data?.username}
+                  </Text>
+                </>
+              ) : (
+                <Skeleton style={{ width: '9rem' }} paragraph={{ rows: 2 }} />
+              )}
             </div>
           </div>
         </div>
