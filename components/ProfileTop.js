@@ -1,13 +1,14 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import css from '@/styles/profileTop.module.css';
-import { Image, Button, Spin, Skeleton } from 'antd';
+import { Image, Button, Spin, Skeleton, Typography } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import { updateBanner } from '@/actions/user';
-import Block from '@/components/Block';
+import Block from '@/components/Block/Block';
+const { Text } = Typography;
 
 const ProfileTop = ({ userId, data, isLoading, isError }) => {
   const [bannerView, setBannerView] = useState(false);
@@ -107,7 +108,7 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
                   <Text className={'profileType'}>
                     {data?.data?.first_name} {data?.data?.last_name}
                   </Text>
-                  <Text className={'typoBody1'} type='secondary'>
+                  <Text className={'bodyType'} type='secondary'>
                     @{data?.data?.username}
                   </Text>
                 </>
@@ -117,6 +118,7 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
             </div>
           </div>
         </div>
+        <div className={css.footer_right}>right side</div>
       </Block>
     </div>
   );

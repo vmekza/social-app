@@ -29,3 +29,28 @@
   right: 1rem;
   z-index: 2;
 }
+.profile_top_footer {
+  padding: 0 2rem 2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.footer_left_profile {
+  margin-top: -2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+.profile_image {
+  z-index: 2;
+  width: 6rem;
+  height: 6rem;
+  overflow: hidden;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
