@@ -9,6 +9,14 @@ import { useMutation } from '@tanstack/react-query';
 import { updateBanner } from '@/actions/user';
 import Block from '@/components/Block/Block';
 const { Text } = Typography;
+const TABS = [
+  {
+    label: 'Profile',
+    icon: 'solar:user-id-bold',
+  },
+  { label: 'Followers', icon: 'ph:heart-fill' },
+  { label: 'Following', icon: 'fluent:people-20-filled' },
+];
 
 const ProfileTop = ({ userId, data, isLoading, isError }) => {
   const [bannerView, setBannerView] = useState(false);
