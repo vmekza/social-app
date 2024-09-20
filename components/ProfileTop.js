@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import css from '@/styles/profileTop.module.css';
-import { Image, Button, Spin, Skeleton, Typography } from 'antd';
+import { Image, Button, Spin, Skeleton, Typography, Tabs, Flex } from 'antd';
 import { useUser } from '@clerk/nextjs';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
@@ -12,9 +12,9 @@ const { Text } = Typography;
 const TABS = [
   {
     label: 'Profile',
-    icon: 'solar:user-id-bold',
+    icon: 'circum:dumbbell',
   },
-  { label: 'Followers', icon: 'ph:heart-fill' },
+  { label: 'Followers', icon: 'bi:heart-pulse' },
   { label: 'Following', icon: 'fluent:people-20-filled' },
 ];
 
@@ -126,7 +126,25 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
             </div>
           </div>
         </div>
-        <div className={css.footer_right}>right side</div>
+        <div className={css.footer_right}>
+          <div className={css.tabs}>
+            <Tabs
+              centered
+              items={TABS.map((tab, i) => {
+                const id = String(i + 1);
+                return {
+                  key: id,
+                  label: (
+                    <Flex align='center' gap={'.5rem'}>
+                      <Icon icon={tab.icon} width={'20px'} />
+                      <span className='subtitle2'>{tab.label}</span>
+                    </Flex>
+                  ),
+                };
+              })}
+            />
+          </div>
+        </div>
       </Block>
     </div>
   );

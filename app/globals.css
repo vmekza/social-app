@@ -77,3 +77,13 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(152, 152, 152, 0.804);
 }
+.ant-tabs-ink-bar-animated {
+  background-color: #35bfc6 !important;
+}
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #35bfc6 !important;
+}
+
+.ant-tabs .ant-tabs-tab:hover {
+  color: #35bfc6 !important;
+}
