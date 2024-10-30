@@ -12,6 +12,8 @@ const ProfileData = ({ userId }) => {
     queryFn: () => getUser(userId),
   });
 
+  const [tab, setTab] = React.useState('1');
+
   return (
     <div className={css.wrapper}>
       <div className={css.profile_data_container}>
@@ -20,6 +22,8 @@ const ProfileData = ({ userId }) => {
           isLoading={isLoading}
           isError={isError}
           userId={userId}
+          tab={tab}
+          setTab={setTab}
         />
       </div>
     </div>

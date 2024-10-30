@@ -2,6 +2,7 @@
 
 import { db } from '@/lib/db';
 import { uploadFile, deleteFile } from './uploadFile';
+import { currentUser } from '@clerk/nextjs';
 
 // Create user
 export const createUser = async (user) => {

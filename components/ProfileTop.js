@@ -18,7 +18,7 @@ const TABS = [
   { label: 'Following', icon: 'fluent:people-20-filled' },
 ];
 
-const ProfileTop = ({ userId, data, isLoading, isError }) => {
+const ProfileTop = ({ userId, data, isLoading, isError, tab, setTab }) => {
   const [bannerView, setBannerView] = useState(false);
   const { user } = useUser();
   const inputRef = useRef(null);
@@ -130,6 +130,8 @@ const ProfileTop = ({ userId, data, isLoading, isError }) => {
           <div className={css.tabs}>
             <Tabs
               centered
+              defaultActiveKey={tab}
+              onChange={(key) => setTab(key)}
               items={TABS.map((tab, i) => {
                 const id = String(i + 1);
                 return {
