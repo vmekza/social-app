@@ -21,8 +21,8 @@ model User {
   banner_url    String?
   username      String?   @unique
   posts         Post[]
-  like          Like[]
-  comment       Comment[]
+  likes         Like[]
+  comments      Comment[]
   trend         Trend[]
   followers     Follow[]  @relation("Following")
   following     Follow[]  @relation("Follower")

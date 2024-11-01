@@ -1,26 +1,22 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { uploadFile, deleteFile } from './uploadFile';
+import { deleteFile, uploadFile } from './uploadFile';
 import { currentUser } from '@clerk/nextjs';
 
-// Create user
 export const createUser = async (user) => {
   const { id, first_name, last_name, email_address, image_url, username } =
     user;
-
   try {
     const userExists = await db.user.findUnique({
       where: {
         id,
       },
     });
-
     if (userExists) {
       updateUser(user);
       return;
     }
-
     await db.user.create({
       data: {
         id,
@@ -31,20 +27,20 @@ export const createUser = async (user) => {
         username,
       },
     });
-    console.log('User created');
+    console.log('New user created in db');
   } catch (e) {
     console.log(e);
     return {
-      error: 'Error while creating user',
+      error: 'Failed to save new user in db',
     };
   }
+
+  console.log('User created in supabase');
 };
 
-// Update user
 export const updateUser = async (user) => {
   const { id, first_name, last_name, email_address, image_url, username } =
     user;
-
   try {
     await db.user.update({
       where: {
@@ -58,33 +54,16 @@ export const updateUser = async (user) => {
         username,
       },
     });
-    console.log('User updated');
   } catch (e) {
     console.log(e);
     return {
-      error: 'Error while updating user',
+      error: 'Failed to update user in db',
     };
   }
+
+  console.log('User updated in supabase');
 };
 
-// Delete user
-export const deleteUser = async (id) => {
-  try {
-    await db.user.delete({
-      where: {
-        id,
-      },
-    });
-    console.log('User deleted');
-  } catch (e) {
-    console.log(e);
-    return {
-      error: 'Error while deleting user',
-    };
-  }
-};
-
-// Get user
 export const getUser = async (id) => {
   try {
     const user = await db.user.findUnique({
@@ -104,28 +83,40 @@ export const getUser = async (id) => {
     });
     return { data: user };
   } catch (e) {
-    console.log(e);
-    return {
-      error: 'Error while getting user',
-    };
+    throw e;
   }
 };
 
-// Update banner
+export const deleteUser = async (id) => {
+  try {
+    await db.user.delete({
+      where: {
+        id,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    return {
+      error: 'Failed to delete user in db',
+    };
+  }
+
+  console.log('User deleted in supabase');
+};
+
 export const updateBanner = async (params) => {
   const { id, banner, prevBannerId } = params;
   try {
     let banner_id;
     let banner_url;
 
-    // Existing banner
     if (banner) {
-      const response = await uploadFile(banner, `/users/${id}`);
-      const { public_id, secure_url } = response;
+      const res = await uploadFile(banner, `/users/${id}`);
+      const { public_id, secure_url } = res;
       banner_id = public_id;
       banner_url = secure_url;
 
-      // Remove previous banner
+      // Delete previous banner
       if (prevBannerId) {
         await deleteFile(prevBannerId);
       }
@@ -135,14 +126,107 @@ export const updateBanner = async (params) => {
         id,
       },
       data: {
-        banner_id,
         banner_url,
+        banner_id,
       },
     });
+    console.log('user banner updated');
+  } catch (e) {
+    console.log('Error updating user banner');
+    throw e;
+  }
+};
+
+export const updateFollow = async (params) => {
+  const { id, type } = params;
+  // type = follow or unfollow, id is target user id
+  try {
+    const loggedInUser = await currentUser();
+    if (type === 'follow') {
+      await db.follow.create({
+        data: {
+          follower: {
+            connect: {
+              id: loggedInUser.id,
+            },
+          },
+          following: {
+            connect: {
+              id,
+            },
+          },
+        },
+      });
+      console.log('User followed');
+    } else if (type === 'unfollow') {
+      await db.follow.deleteMany({
+        where: {
+          followerId: loggedInUser.id,
+          followingId: id,
+        },
+      });
+      console.log('User unfollowed');
+    }
   } catch (e) {
     console.log(e);
+    throw e;
+  }
+};
+
+export const getAllFollowersAndFollowings = async (id) => {
+  try {
+    const followers = await db.follow.findMany({
+      where: {
+        followingId: id,
+      },
+      include: {
+        follower: true,
+      },
+    });
+    const following = await db.follow.findMany({
+      where: {
+        followerId: id,
+      },
+      include: {
+        following: true,
+      },
+    });
     return {
-      error: 'Error while updating banner',
+      followers,
+      following,
     };
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+export const getFollowSuggestions = async () => {
+  try {
+    const loggedInUser = await currentUser();
+    // Fetch all users that the given user is already following
+    const following = await db.follow.findMany({
+      where: {
+        followerId: loggedInUser?.id,
+      },
+    });
+
+    // Extract the IDs of the users that the given user is already following
+    const followingIds = following.map((follow) => follow.followingId);
+
+    // Fetch all users that the given user is not already following
+    const suggestions = await db.user.findMany({
+      where: {
+        AND: [
+          { id: { not: loggedInUser?.id } }, // Exclude the user themselves
+          { id: { notIn: followingIds } }, // Exclude users they're already following
+        ],
+      },
+    });
+
+    return suggestions;
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };

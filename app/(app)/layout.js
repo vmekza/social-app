@@ -7,6 +7,7 @@ import css from '@/styles/homeLayout.module.css';
 import Header from '@/components/Header';
 import Navigation from '@/components/Navigation';
 import { Toaster } from 'react-hot-toast';
+
 import {
   dehydrate,
   HydrationBoundary,

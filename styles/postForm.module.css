@@ -7,6 +7,7 @@
   box-shadow: var(--shadow);
   border-radius: 0.5rem;
   position: relative;
+  margin-right: 1.5rem;
 }
 .post_form_btn {
   padding: 0.5rem 0rem 0rem 0rem;

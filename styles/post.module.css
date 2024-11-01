@@ -3,6 +3,7 @@
   box-shadow: var(--shadow);
   overflow: hidden;
   margin-left: 1.3rem;
+  margin-right: 1.5rem;
 }
 .post_container {
   display: flex;

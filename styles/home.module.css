@@ -15,7 +15,7 @@
   margin-right: auto;
   padding-bottom: 4rem;
   overflow-y: auto;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   border-radius: 0.5rem;
 }
 

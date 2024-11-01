@@ -1,14 +1,14 @@
 import React from 'react';
 import Home from '@/sections/Home';
 
-export const metadat = () => {
+export const metadata = () => {
   return {
     title: 'Brag Zone',
     description: 'Own your glory',
   };
 };
 
-const MainPage = () => {
+const MainPage = async () => {
   return <Home />;
 };
 
