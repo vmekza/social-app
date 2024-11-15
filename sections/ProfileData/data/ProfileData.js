@@ -25,6 +25,7 @@ const ProfileData = ({ userId }) => {
           tab={tab}
           setTab={setTab}
         />
+        {tab === '1' && <ProfileBody userId={userId} />}
       </div>
     </div>
   );
